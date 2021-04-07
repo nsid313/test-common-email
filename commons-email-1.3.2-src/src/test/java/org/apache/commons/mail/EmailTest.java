@@ -98,4 +98,15 @@ public class EmailTest {
 		
 	}
 	
+	/*
+	 * Test addReplyTo(String email, String name) by comparing the sizes 
+	 * of expected and actual result
+	 */
+	@Test
+	public void testaddReplyTo() throws Exception{
+		
+		email.addReplyTo(t_email, "abcd");
+		assertEquals(1, email.getReplyToAddresses().size());
+	}
+	
 }
