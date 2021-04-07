@@ -208,4 +208,16 @@ public class EmailTest {
 		assertEquals(expected, email.getHostName());
 	}
 	
+	/*
+	 * Test getMailSession() by checking for exception when valid hostName is not provided
+	 */
+
+	@Test
+	public void testgetMailSession() throws Exception{
+		
+		
+	    thrown.expectMessage("Cannot find valid hostname for mail session");
+	    email.getMailSession();
+	   
+	}
 }
