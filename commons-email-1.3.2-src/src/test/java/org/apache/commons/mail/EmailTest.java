@@ -220,4 +220,18 @@ public class EmailTest {
 	    email.getMailSession();
 	   
 	}
+	
+	/*
+	 * Test getSentDate() by checking if getSentDate returns the current sent date
+	 */
+	@Test
+	public void testgetSentDate() throws Exception{
+		
+		Date test_date = new Date();
+	
+		email.setSentDate(test_date);
+		
+		assertEquals(test_date, email.getSentDate());
+
+	}
 }
