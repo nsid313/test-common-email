@@ -186,4 +186,26 @@ public class EmailTest {
 
 	
 	}
+	
+	/*
+	 * Test getHostName() by comparing the value of getHostName with the expected result when hostName is not null
+	 */
+	@Test
+	public void testgetHostName_1() throws Exception{
+		
+		email.setHostName("host");
+		assertEquals("host", email.getHostName());
+	}
+	
+	
+	/*
+	 * Test getHostName() by checking when the hostName is null
+	 */
+	@Test
+	public void testgetHostName_2() throws Exception{
+		
+		String expected = null;
+		assertEquals(expected, email.getHostName());
+	}
+	
 }
