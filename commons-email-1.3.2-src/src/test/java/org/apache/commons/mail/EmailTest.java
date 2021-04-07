@@ -48,7 +48,17 @@ public class EmailTest {
 	}
 	
 	
-	
+	/*
+	 * Test addCc(String) by Comparing the string value from getCcAddresses with 
+	 * the expected email value
+	 */
+	@Test
+	public void testaddCc() throws Exception{
+		
+		email.addCc(t_email);
+		String expected = "ab@bc.com";
+		assertEquals(expected, email.getCcAddresses().get(0).toString());
+	}
 	
 	
 	
