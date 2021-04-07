@@ -109,4 +109,81 @@ public class EmailTest {
 		assertEquals(1, email.getReplyToAddresses().size());
 	}
 	
+	/*
+	 * Test buildMimeMessage() by comparing the value of getSubject with an expected value
+	 */
+	@Test
+	public void testbuildMimeMessage_1() throws Exception{
+		email.setHostName("host");
+		email.setFrom(t_email);
+		email.addReplyTo(t_email, "abcd");
+		email.addTo("ac@d.com");
+		email.addBcc("bj@g.com");
+		email.addCc("ab@c.org");
+		email.addHeader("header", "testheader");
+		email.setSubject("subject");
+
+		email.buildMimeMessage();
+		MimeMessage message = email.getMimeMessage();
+		message.saveChanges();
+		
+		assertEquals("subject", message.getSubject());
+	}
+	
+	
+	
+	/* 
+	 * Test buildMimeMessage() by checking for exception when no From address is provided.
+	 */
+	@Test
+	public void testbuildMimeMessage_2() throws Exception{
+		
+		email.setHostName("host");
+		email.addHeader("header", "testheader");
+		email.setSubject("subject");
+		email.addTo("ac@d.com");
+		email.addCc("ab@c.org");
+
+
+		thrown.expectMessage("From address required");
+		email.buildMimeMessage();
+	}
+	
+	
+	/*
+	 * Test buildMimeMessage() by checking for exception when no receiver address is provided
+	 */
+	@Test
+	public void testbuildMimeMessage_3() throws Exception{
+		
+		email.setHostName("host");
+		email.setFrom(t_email);
+		email.addHeader("header", "testheader");
+		email.setSubject("subject");
+
+		thrown.expectMessage("At least one receiver address required");
+		email.buildMimeMessage();
+	}
+	
+	
+	/*
+	 * Test buildMimeMessage() by checking for exception when the message already exists. 
+	 */
+	@Test
+	public void testbuildMimeMessage_4() throws Exception{
+		email.setHostName("host");
+		email.setFrom(t_email);
+		email.addTo("ac@d.com");
+		email.addBcc("bj@g.com");
+		email.addCc("ab@c.org");
+		email.content = "Hello";
+
+		email.buildMimeMessage();
+		
+		
+		thrown.expectMessage("The MimeMessage is already built.");
+		email.buildMimeMessage();
+
+	
+	}
 }
