@@ -247,4 +247,16 @@ public class EmailTest {
 
 		assertEquals(expected, actual);
 	}
+	
+	/*
+	 * Test setFrom() by comparing the value of the From address (string) 
+	 * with expected value
+	 */
+	@Test
+	public void testsetFrom() throws Exception{
+		
+		email.setFrom(t_email);
+		assertEquals("ab@bc.com",email.getFromAddress().toString());
+	}
+	
 }
