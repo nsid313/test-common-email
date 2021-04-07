@@ -60,6 +60,42 @@ public class EmailTest {
 		assertEquals(expected, email.getCcAddresses().get(0).toString());
 	}
 	
+	private static String t_header = "testheader";
 	
+	
+	/*
+	 * Test addHeader(String name, String value) by Comparing the value of the 
+	 * header with the expected result
+	 */
+	@Test
+	public void testaddHeader() throws Exception{
+		email.addHeader(t_header, "testheader");
+		String expected = "testheader";
+		assertEquals(expected, email.headers.get("testheader"));
+	}
+	
+	/*
+	 * Test addHeader(String name, String value) by checking for exception when 
+	 * the name of the header is empty
+	 */ 
+	@Test
+	public void testaddHeaderKey() throws Exception{
+		
+		thrown.expectMessage("name can not be null or empty");
+		email.addHeader("", "testheader");
+		
+	}
+	
+	
+	/*
+	 * Test addHeader(String name, String value) by checking for exception when the 
+	 * value of the header is empty
+	 */
+	@Test
+	public void testaddHeaderValue() throws Exception{
+		thrown.expectMessage("value can not be null or empty");
+		email.addHeader(t_header, "");
+		
+	}
 	
 }
