@@ -1,5 +1,6 @@
-jdk: 
-  - oraclejdk11
 language: java
-script: 
-  - "mvn clean package"
+
+jdk: 
+    - oraclejdk11
+    
+script: - mvn clean package
